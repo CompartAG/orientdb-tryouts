@@ -63,6 +63,7 @@ public class OrientDBQueryF1TeamsIT extends AbstractOrientDBDocumentITest {
         String querySql = "select distinct(" + F1SchemaCreator.BUILT_BY + ")." + F1SchemaCreator.NAME + " from "
                 + F1SchemaCreator.CAR;
 
+        // This query fails!
         exerciseAndVerifyTeams(querySql);
     }
 
