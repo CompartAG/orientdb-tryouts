@@ -16,10 +16,8 @@ public class GraphShutdownTest {
     public void testShutdownGraph_graphCommitAfterShutdown() {
         OrientGraphFactory factory = new OrientGraphFactory("memory:test");
         OrientGraph graph1 = factory.getTx();
-        graph1.setThreadMode(OrientConfigurableGraph.THREAD_MODE.ALWAYS_AUTOSET);
         OrientGraph graph2 = factory.getTx();
-        graph2.setThreadMode(OrientConfigurableGraph.THREAD_MODE.ALWAYS_AUTOSET);
-        graph2.shutdown(true); // in 2.2 this will not close the database because graph1 is still open
+        graph2.shutdown(true); // in 2.2 this will not close the database because graph1 is still active in the pool
         graph2.commit(); // this should fail
     }
 }
