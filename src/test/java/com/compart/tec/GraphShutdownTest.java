@@ -1,7 +1,6 @@
 package com.compart.tec;
 
 import com.orientechnologies.orient.core.exception.ODatabaseException;
-import com.tinkerpop.blueprints.impls.orient.OrientConfigurableGraph;
 import com.tinkerpop.blueprints.impls.orient.OrientGraph;
 import com.tinkerpop.blueprints.impls.orient.OrientGraphFactory;
 import org.junit.Assert;
