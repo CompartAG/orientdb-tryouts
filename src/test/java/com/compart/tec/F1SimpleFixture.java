@@ -30,10 +30,17 @@ public class F1SimpleFixture {
         createDriver("Nigel Mansell", "british", 1953);
         createDriver("Ralf Schumacher", "german", 1975);
         createDriver("Nelson Piquet", "brazilian", 1952);
+        createDriver("Michele alboreto", "italian", 1956);
+        createDriver("Riccardo Patrese", "italian", 1954);
+        createDriver("Stefan Bellof", "german", 1957);
+        createDriver("Stefan Johansson", "swedish", 1956);
 
         // The teams
         createMcLarenF1Team();
         createWilliamsF1Team();
+        createTeam("Scuderia Ferrari");
+        createTeam("Tyrrell");
+        createTeam("Toleman");
     }
 
     private ODocument createMcLarenF1Team() {
@@ -45,8 +52,8 @@ public class F1SimpleFixture {
         ODocument mp4_22 = createCar("Mp4-22", alonso, hamilton);
         ODocument mp4_28 = createCar("Mp4-28", hamilton, button);
         ODocument mp4_30 = createCar("Mp4-30", alonso, button);
-        ODocument mclarenF1Team = new ODocument(F1SchemaCreator.TEAM).field(F1SchemaCreator.NAME, "McLaren F1 Team")
-                .field(F1SchemaCreator.CARS_HERITAGE, new HashSet<>(Arrays.asList(mp4_22, mp4_28, mp4_30)));
+        ODocument mclarenF1Team = createTeam("McLaren F1 Team").field(F1SchemaCreator.CARS_HERITAGE,
+                new HashSet<>(Arrays.asList(mp4_22, mp4_28, mp4_30)));
 
         Arrays.asList(mp4_22, mp4_28, mp4_30).stream().forEach(car -> {
             car.field(F1SchemaCreator.BUILT_BY, mclarenF1Team).save();
@@ -65,14 +72,18 @@ public class F1SimpleFixture {
         ODocument fw22 = createCar("FW22", ralf, button).save();
         ODocument fw11 = createCar("FW11", mansell, piquet).save();
 
-        ODocument williamsF1Team = new ODocument(F1SchemaCreator.TEAM).field(F1SchemaCreator.NAME, "Williams F1 Team")
-                .field(F1SchemaCreator.CARS_HERITAGE, new HashSet<>(Arrays.asList(fw22, fw11)));
+        ODocument williamsF1Team = createTeam("Williams F1 Team").field(F1SchemaCreator.CARS_HERITAGE,
+                new HashSet<>(Arrays.asList(fw22, fw11)));
 
         Arrays.asList(fw11, fw22).stream().forEach(car -> {
             car.field(F1SchemaCreator.BUILT_BY, williamsF1Team).save();
         });
 
         return williamsF1Team.save();
+    }
+
+    private ODocument createTeam(String teamName) {
+        return new ODocument(F1SchemaCreator.TEAM).field(F1SchemaCreator.NAME, teamName).save();
     }
 
     private ODocument createDriver(String name, String nationality, int yearOfBirth) {

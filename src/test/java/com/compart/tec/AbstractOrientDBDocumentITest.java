@@ -3,6 +3,9 @@ package com.compart.tec;
 import com.orientechnologies.orient.core.db.OPartitionedDatabasePool;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
+import com.orientechnologies.orient.core.record.impl.ODocument;
+import com.orientechnologies.orient.core.sql.query.OResultSet;
+import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
 
 /**
  * Base class for integration tests which need to interact with an orientdb object database.
@@ -36,6 +39,16 @@ public abstract class AbstractOrientDBDocumentITest {
         }
     }
 
+    public void tearDown() {
+
+        this.oDocDatabase.drop();
+        if (!this.oDocDatabase.isClosed()) {
+            this.oDocDatabase.close();
+        }
+
+        databasePool.close();
+    }
+
     /**
      * @return <code>true</code> if the database is up and running, <code>false</code> otherwise.
      */
@@ -43,8 +56,15 @@ public abstract class AbstractOrientDBDocumentITest {
         return this.oDocDatabase != null;
     }
 
-    public void tearDown() {
-        this.oDocDatabase.close();
+    /**
+     * Executes a query
+     * 
+     * @param sqlQuery
+     * @return resultSet
+     */
+    protected OResultSet<ODocument> executeQuery(String sqlQuery) {
+        OSQLSynchQuery<ODocument> oQuery = new OSQLSynchQuery<ODocument>(sqlQuery);
+        return getDatabase().command(oQuery).execute();
     }
 
     protected ODatabaseDocument getDatabase() {
