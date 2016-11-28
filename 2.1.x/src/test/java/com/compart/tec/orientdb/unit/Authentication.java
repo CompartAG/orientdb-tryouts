@@ -1,4 +1,4 @@
-package com.compart.tec;
+package com.compart.tec.orientdb.unit;
 
 /**
  * Default user and password for test databases.

@@ -1,10 +1,10 @@
-package com.compart.tec;
+package com.compart.tec.orientdb;
+
+import org.junit.Test;
 
 import com.orientechnologies.orient.core.exception.ODatabaseException;
 import com.tinkerpop.blueprints.impls.orient.OrientGraph;
 import com.tinkerpop.blueprints.impls.orient.OrientGraphFactory;
-import org.junit.Assert;
-import org.junit.Test;
 
 /**
  * Created by fc7 on 14/04/2016.

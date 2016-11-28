@@ -1,12 +1,16 @@
-package com.compart.tec;
+package com.compart.tec.orientdb;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 import org.hamcrest.CoreMatchers;
 import org.junit.After;
+import org.junit.Ignore;
 import org.junit.Test;
 
+import com.compart.tec.orientdb.f1.F1SchemaCreator;
+import com.compart.tec.orientdb.f1.F1SimpleFixture;
+import com.compart.tec.orientdb.unit.AbstractOrientDBDocumentITest;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.query.OResultSet;
 
@@ -56,6 +60,7 @@ public class OrientDBQueryF1TeamsIT extends AbstractOrientDBDocumentITest {
     }
 
     @Test
+    @Ignore
     public void testQueryEmulatingJoin_nestedDistinctWithoutExpanding() {
 
         // setup

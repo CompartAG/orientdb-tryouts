@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.compart.tec.orientdb</groupId>
+		<artifactId>orientdb-tryouts-parent-pom</artifactId>
+		<relativePath>../parent/pom.xml</relativePath>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+		
+	<artifactId>orientdb-tryouts-2.1.x</artifactId>
+	<name>OrientDB tryouts 2.1.x</name>
+	<description>OrientDB tryouts 2.1.x</description>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<properties>
+		<orientdb.version>2.1.15</orientdb.version>
+	</properties>
+	
+	<dependencies>
+		<!-- Compart -->
+
+		<!-- 3rd party -->
+		<dependency>
+			<groupId>com.orientechnologies</groupId>
+			<artifactId>orientdb-core</artifactId>
+			<version>${orientdb.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.orientechnologies</groupId>
+			<artifactId>orientdb-graphdb</artifactId>
+			<version>${orientdb.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.orientechnologies</groupId>
+			<artifactId>orientdb-object</artifactId>
+			<version>${orientdb.version}</version>
+		</dependency>
+	
+		<!-- Test -->
+		</dependencies>
+</project>

@@ -1,4 +1,4 @@
-package com.compart.tec;
+package com.compart.tec.orientdb.f1;
 
 import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
 import com.orientechnologies.orient.core.metadata.schema.OClass;

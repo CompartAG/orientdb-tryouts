@@ -1,4 +1,4 @@
-package com.compart.tec;
+package com.compart.tec.orientdb.f1;
 
 import java.util.Arrays;
 import java.util.HashSet;

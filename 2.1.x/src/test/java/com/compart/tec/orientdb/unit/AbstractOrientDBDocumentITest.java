@@ -1,4 +1,6 @@
-package com.compart.tec;
+package com.compart.tec.orientdb.unit;
+
+import org.junit.Assert;
 
 import com.orientechnologies.orient.core.db.OPartitionedDatabasePool;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
@@ -33,10 +35,7 @@ public abstract class AbstractOrientDBDocumentITest {
         this.databasePool = new OPartitionedDatabasePool(dbUrl, Authentication.DEFAULT_TESTDB_USER,
                 Authentication.DEFAULT_TESTDB_PASSWORD);
         this.oDocDatabase = this.databasePool.acquire();
-
-        if (!dbIsUpAndRunning()) {
-            throw new IllegalStateException("Database is closed.");
-        }
+        Assert.assertTrue(dbIsUpAndRunning());
     }
 
     public void tearDown() {
