@@ -15,8 +15,8 @@ public class Husband extends BaseEntity {
 
     public void setWife(Wife wife) {
         this.wife = wife;
-//        if (wife.getHusband() != this) {
-//            wife.setHusband(this);
-//        }
+        if (wife.getHusband() != this) {
+            wife.setHusband(this);
+        }
     }
 }
