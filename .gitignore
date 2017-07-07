@@ -2,3 +2,4 @@
 *.prefs
 *.project
 *.classpath
+**/target

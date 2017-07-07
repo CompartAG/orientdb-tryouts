@@ -5,15 +5,18 @@
 
 package com.compart.tec.orientdb.object;
 
-public class Wife extends BaseEntity {
+import javax.persistence.Entity;
 
-    private Husband husband;
+@Entity
+public class Woman extends BaseEntity {
 
-    public Husband getHusband() {
+    private Man husband;
+
+    public Man getHusband() {
         return this.husband;
     }
 
-    public void setHusband(Husband husband) {
+    public void setHusband(Man husband) {
         this.husband = husband;
         if (husband.getWife() != this) {
             husband.setWife(this);

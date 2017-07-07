@@ -6,14 +6,12 @@
 package com.compart.tec.orientdb.object;
 
 import javax.persistence.Basic;
-import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Version;
 
 /**
  * Base class for entities.
  */
-@Entity
 public abstract class BaseEntity {
 
     @Id
