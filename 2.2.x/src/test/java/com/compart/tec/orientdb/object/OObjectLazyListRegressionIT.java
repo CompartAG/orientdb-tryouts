@@ -40,9 +40,14 @@ public class OObjectLazyListRegressionIT extends AbstractOrientDBObjectITest {
 
         // verify
         Assert.assertNotNull(savedJohn);
+        // Normal loop
         for (Woman exWife : savedJohn.getExWives()) {
             Assert.assertNotNull(exWife.getName());
         }
+        // Streaming
+        savedJohn.getExWives().stream().forEach((exWife) -> {
+            Assert.assertNotNull(exWife.getName());
+        });
     }
 
     @Test
