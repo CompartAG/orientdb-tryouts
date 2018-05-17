@@ -1,5 +1,6 @@
 package com.compart.tec.orientdb.unit;
 
+import org.junit.After;
 import org.junit.Assert;
 
 import com.orientechnologies.orient.core.db.OPartitionedDatabasePool;
@@ -38,7 +39,8 @@ public abstract class AbstractOrientDBDocumentITest {
         Assert.assertTrue(dbIsUpAndRunning());
     }
 
-    public void tearDown() {
+    @After
+    public void tearDownAbstractOrientDBDocumentITest() {
 
         this.oDocDatabase.drop();
         if (!this.oDocDatabase.isClosed()) {

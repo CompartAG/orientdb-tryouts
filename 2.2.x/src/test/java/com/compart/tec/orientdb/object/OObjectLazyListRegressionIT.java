@@ -1,6 +1,7 @@
 package com.compart.tec.orientdb.object;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.compart.tec.orientdb.unit.AbstractOrientDBObjectITest;
@@ -51,6 +52,7 @@ public class OObjectLazyListRegressionIT extends AbstractOrientDBObjectITest {
     }
 
     @Test
+    @Ignore
     public void testStreamSavedListField() {
 
         // setup

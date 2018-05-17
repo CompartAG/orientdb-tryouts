@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 import org.hamcrest.CoreMatchers;
-import org.junit.After;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -15,7 +14,7 @@ import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.query.OResultSet;
 
 /**
- * OrientDB sql queries try out.
+ * @author diegomtassis <a href="mailto:dta@compart.com">Diego Martin Tassis</a>
  */
 public class OrientDBQueryF1TeamsIT extends AbstractOrientDBDocumentITest {
 
@@ -23,11 +22,6 @@ public class OrientDBQueryF1TeamsIT extends AbstractOrientDBDocumentITest {
         super(OrientDBQueryF1TeamsIT.class.getSimpleName());
         new F1SchemaCreator(getDatabase()).proceed();
         new F1SimpleFixture(getDatabase()).load();
-    }
-
-    @After
-    public void tearDown() {
-        super.tearDown();
     }
 
     @Test

@@ -1,27 +1,23 @@
 package com.compart.tec.orientdb;
 
-import org.junit.After;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.compart.tec.orientdb.unit.AbstractOrientDBDocumentITest;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 
 /**
- * OrientDB sql queries try out.
+ * @author diegomtassis <a href="mailto:dta@compart.com">Diego Martin Tassis</a>
  */
-public class OrientDBODocumentIT extends AbstractOrientDBDocumentITest {
+public class OrientDBODocumenHashCodeIT extends AbstractOrientDBDocumentITest {
 
-    public OrientDBODocumentIT() {
-        super(OrientDBODocumentIT.class.getSimpleName());
-    }
-
-    @After
-    public void tearDown() {
-        super.tearDown();
+    public OrientDBODocumenHashCodeIT() {
+        super(OrientDBODocumenHashCodeIT.class.getSimpleName());
     }
 
     @Test
+    @Ignore
     public void testODocumentHashCode() {
 
         // setup
@@ -37,6 +33,7 @@ public class OrientDBODocumentIT extends AbstractOrientDBDocumentITest {
     }
 
     @Test
+    @Ignore
     public void testORidHashCode() {
 
         // setup

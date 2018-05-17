@@ -7,6 +7,7 @@ package com.compart.tec.orientdb.object;
 
 import static org.junit.Assert.assertEquals;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.compart.tec.orientdb.unit.AbstractOrientDBObjectITest;
@@ -15,6 +16,10 @@ import com.orientechnologies.orient.object.enhancement.OObjectProxyMethodHandler
 
 import javassist.util.proxy.ProxyObject;
 
+/**
+ * @author diegomtassis <a href="mailto:dta@compart.com">Diego Martin Tassis</a>
+ */
+@Ignore
 public class SaveOneToOnePojoIT extends AbstractOrientDBObjectITest {
 
     public SaveOneToOnePojoIT() {

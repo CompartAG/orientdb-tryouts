@@ -2,7 +2,6 @@ package com.compart.tec.orientdb;
 
 import static org.junit.Assert.assertEquals;
 
-import org.junit.After;
 import org.junit.Test;
 
 import com.compart.tec.orientdb.f1.F1SchemaCreator;
@@ -12,7 +11,7 @@ import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.query.OResultSet;
 
 /**
- * OrientDB sql queries try out.
+ * @author diegomtassis <a href="mailto:dta@compart.com">Diego Martin Tassis</a>
  */
 public class OrientDBPaginationIT extends AbstractOrientDBDocumentITest {
 
@@ -20,11 +19,6 @@ public class OrientDBPaginationIT extends AbstractOrientDBDocumentITest {
         super(OrientDBPaginationIT.class.getSimpleName());
         new F1SchemaCreator(getDatabase()).proceed();
         new F1SimpleFixture(getDatabase()).load();
-    }
-
-    @After
-    public void tearDown() {
-        super.tearDown();
     }
 
     @Test

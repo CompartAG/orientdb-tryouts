@@ -16,6 +16,8 @@ import com.orientechnologies.orient.core.sql.query.OResultSet;
 
 /**
  * OrientDB sql queries try out.
+ * 
+ * @author diegomtassis <a href="mailto:dta@compart.com">Diego Martin Tassis</a>
  */
 public class OrientDBQueryF1TeamsIT extends AbstractOrientDBDocumentITest {
 

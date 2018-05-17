@@ -16,6 +16,10 @@ import com.orientechnologies.orient.object.enhancement.OObjectProxyMethodHandler
 
 import javassist.util.proxy.ProxyObject;
 
+/**
+ * @author diegomtassis <a href="mailto:dta@compart.com">Diego Martin Tassis</a>
+ */
+@Ignore
 public class SaveOneToOnePojoIT extends AbstractOrientDBObjectITest {
 
     public SaveOneToOnePojoIT() {
@@ -23,7 +27,6 @@ public class SaveOneToOnePojoIT extends AbstractOrientDBObjectITest {
     }
 
     @Test
-    @Ignore
     public void testUpdateOneToOneBidirectional() {
 
         // setup
