@@ -21,28 +21,24 @@ public class PropagateSaveOnSetFieldIT extends AbstractOrientDBObjectITest {
     }
 
     @Test
-    public void testPropagateSave_SameConnection() {
+    public void testPropagateSaveOverSet_SameConnection() {
 
         // setup: infrastructure
         registerEntities();
 
         // setup: data
         Man ayrton = new Man();
-        Man alan = new Man();
-        ayrton.addFriend(alan);
-        alan.setFavoriteFood("raclette");
-        this.getDatabase().begin();
+        Man alain = new Man();
+        ayrton.addFriend(alain);
+        alain.setFavoriteFood("raclette");
         Man savedAyrton = this.getDatabase().save(ayrton);
-        this.getDatabase().commit();
         String ayrtonId = savedAyrton.getId();
 
         // exercise
-        this.getDatabase().begin();
         Person retrievedAyrton = this.getDatabase().load(new ORecordId(ayrtonId));
-        Person retrievedAlan = retrievedAyrton.getFriends().iterator().next();
-        retrievedAlan.setFavoriteFood("scargots");
+        Person retrievedAlain = retrievedAyrton.getFriends().iterator().next();
+        retrievedAlain.setFavoriteFood("scargots");
         savedAyrton = this.getDatabase().save(retrievedAyrton);
-        this.getDatabase().commit();
 
         // verify
         retrievedAyrton = this.getDatabase().load(new ORecordId(ayrtonId));
@@ -50,34 +46,57 @@ public class PropagateSaveOnSetFieldIT extends AbstractOrientDBObjectITest {
     }
 
     @Test
-    public void testPropagateSave_DifferentConnections() {
+    public void testPropagateSaveOverSet_DifferentConnections() {
 
         // setup: infrastructure
         registerEntities();
 
         // setup: data
         Man ayrton = new Man();
-        Man alan = new Man();
-        ayrton.addFriend(alan);
-        alan.setFavoriteFood("raclette");
-        this.getDatabase().begin();
+        Man alain = new Man();
+        ayrton.addFriend(alain);
+        alain.setFavoriteFood("raclette");
         Man savedAyrton = this.getDatabase().save(ayrton);
-        this.getDatabase().commit();
         String ayrtonId = savedAyrton.getId();
 
         // exercise
         this.releaseCurrentConnection();
-        this.getDatabase().begin();
         Person retrievedAyrton = this.getDatabase().load(new ORecordId(ayrtonId));
-        Person retrievedAlan = retrievedAyrton.getFriends().iterator().next();
-        retrievedAlan.setFavoriteFood("scargots");
+        Person retrievedAlain = retrievedAyrton.getFriends().iterator().next();
+        retrievedAlain.setFavoriteFood("scargots");
         savedAyrton = this.getDatabase().save(retrievedAyrton);
-        this.getDatabase().commit();
 
         // verify
         this.releaseCurrentConnection();
         retrievedAyrton = this.getDatabase().load(new ORecordId(ayrtonId));
         Assert.assertEquals("scargots", retrievedAyrton.getFriends().iterator().next().getFavoriteFood());
+    }
+
+    @Test
+    public void testPropagateSaveOverCollection_DifferentConnections() {
+
+        // setup: infrastructure
+        registerEntities();
+
+        // setup: data
+        Man ayrton = new Man();
+        Man alain = new Man();
+        ayrton.addEnemy(alain);
+        alain.setFavoriteFood("raclette");
+        Man savedAyrton = this.getDatabase().save(ayrton);
+        String ayrtonId = savedAyrton.getId();
+
+        // exercise
+        this.releaseCurrentConnection();
+        Person retrievedAyrton = this.getDatabase().load(new ORecordId(ayrtonId));
+        Person retrievedAlain = retrievedAyrton.getEnemies().iterator().next();
+        retrievedAlain.setFavoriteFood("scargots");
+        savedAyrton = this.getDatabase().save(retrievedAyrton);
+
+        // verify
+        this.releaseCurrentConnection();
+        retrievedAyrton = this.getDatabase().load(new ORecordId(ayrtonId));
+        Assert.assertEquals("scargots", retrievedAyrton.getEnemies().iterator().next().getFavoriteFood());
     }
 
     private void registerEntities() {
