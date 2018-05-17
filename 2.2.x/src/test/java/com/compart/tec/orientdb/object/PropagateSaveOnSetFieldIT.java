@@ -20,6 +20,9 @@ public class PropagateSaveOnSetFieldIT extends AbstractOrientDBObjectITest {
         super(PropagateSaveOnSetFieldIT.class.getSimpleName());
     }
 
+    /**
+     * Propagating a save operation over a Set field using the same connection. It works.
+     */
     @Test
     public void testPropagateSaveOverSet_SameConnection() {
 
@@ -45,6 +48,9 @@ public class PropagateSaveOnSetFieldIT extends AbstractOrientDBObjectITest {
         Assert.assertEquals("scargots", retrievedAyrton.getFriends().iterator().next().getFavoriteFood());
     }
 
+    /**
+     * Propagating a save operation over a Set field (and then reading) using different connections. It fails.
+     */
     @Test
     public void testPropagateSaveOverSet_DifferentConnections() {
 
@@ -72,6 +78,9 @@ public class PropagateSaveOnSetFieldIT extends AbstractOrientDBObjectITest {
         Assert.assertEquals("scargots", retrievedAyrton.getFriends().iterator().next().getFavoriteFood());
     }
 
+    /**
+     * Propagating a save operation over a Collection field (and then reading) using different connections. It fails.
+     */
     @Test
     public void testPropagateSaveOverCollection_DifferentConnections() {
 
