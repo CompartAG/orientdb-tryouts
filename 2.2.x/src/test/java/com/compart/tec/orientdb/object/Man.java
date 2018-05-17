@@ -11,7 +11,7 @@ import java.util.List;
 import javax.persistence.Entity;
 
 @Entity
-public class Man extends BaseEntity {
+public class Man extends Person {
 
     private Woman wife;
 

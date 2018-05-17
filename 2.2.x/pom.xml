@@ -13,11 +13,10 @@
 	<artifactId>orientdb-tryouts-2.2.x</artifactId>
 	<name>OrientDB tryouts 2.2.x</name>
 	<description>OrientDB tryouts 2.2.x</description>
-	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<properties>
-		<orientdb.version>2.2.22</orientdb.version>
+		<orientdb.version>2.2.35</orientdb.version>
 	</properties>
 	
 	<dependencies>

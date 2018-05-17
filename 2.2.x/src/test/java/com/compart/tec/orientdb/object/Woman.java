@@ -8,7 +8,7 @@ package com.compart.tec.orientdb.object;
 import javax.persistence.Entity;
 
 @Entity
-public class Woman extends BaseEntity {
+public class Woman extends Person {
 
     private Man husband;
 
