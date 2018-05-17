@@ -1,5 +1,6 @@
 package com.compart.tec.orientdb.unit;
 
+import org.junit.After;
 import org.junit.Assert;
 
 import com.orientechnologies.orient.core.db.object.ODatabaseObject;
@@ -40,7 +41,9 @@ public abstract class AbstractOrientDBObjectITest {
         return this.oDatabase != null;
     }
 
-    public void tearDown() {
+    @After
+    public void tearDownAbstractOrientDBObjectITest() {
+        
         this.oDatabase.drop();
         if (!this.oDatabase.isClosed()) {
             this.oDatabase.close();

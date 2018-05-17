@@ -57,8 +57,9 @@ public class PropagateSaveOnSetFieldIT extends AbstractOrientDBObjectITest {
 
         // exercise
         Person retrievedAyrton = this.getDatabase().load(new ORecordId(ayrtonId));
-        retrievedAyrton.getFriends().iterator().next().setFavoriteFood("scargots");
-        this.getDatabase().save(savedAyrton);
+        Person retrievedAlan = retrievedAyrton.getFriends().iterator().next();
+        retrievedAlan.setFavoriteFood("scargots");
+        savedAyrton = this.getDatabase().save(retrievedAyrton);
 
         // verify
         retrievedAyrton = this.getDatabase().load(new ORecordId(ayrtonId));
