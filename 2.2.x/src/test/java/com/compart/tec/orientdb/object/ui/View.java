@@ -1,8 +1,3 @@
-/*****************************************************************************
- * Copyright (C) Compart AG, 2018 - Compart confidential
- *
- *****************************************************************************/
-
 package com.compart.tec.orientdb.object.ui;
 
 import javax.persistence.Basic;

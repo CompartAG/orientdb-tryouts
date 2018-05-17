@@ -14,6 +14,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.compart.tec.orientdb.unit.AbstractOrientDBObjectITest;
+import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
 
 public class PropagateSaveOnSetIT extends AbstractOrientDBObjectITest {
 
@@ -41,10 +42,14 @@ public class PropagateSaveOnSetIT extends AbstractOrientDBObjectITest {
         UserSettings userSettings = this.createUserSettings(DEFAULT_USER);
         this.createView(userSettings, DEFAULT_VIEW, Boolean.FALSE);
 
+        this.getDatabase().begin();
         this.getDatabase().save(userSettings);
+        this.getDatabase().commit();
 
         // exercise
+        this.getDatabase().begin();
         this.setAutoRefresh(DEFAULT_USER, DEFAULT_VIEW, Boolean.TRUE);
+        this.getDatabase().commit();
 
         // verify
         Boolean isAutoRefresh = this.isAutoRefresh(DEFAULT_USER, DEFAULT_VIEW);
@@ -79,7 +84,11 @@ public class PropagateSaveOnSetIT extends AbstractOrientDBObjectITest {
 
     private UserSettings findUserSettings(String userName) {
 
-        Iterator<UserSettings> userSettingsIterator = this.getDatabase().browseClass(UserSettings.class);
+        // Iterator<UserSettings> userSettingsIterator = this.getDatabase().browseClass(UserSettings.class);
+
+        String sqlQuery = "SELECT FROM " + UserSettings.class.getSimpleName();
+        Iterator<UserSettings> userSettingsIterator = (Iterator<UserSettings>) this.getDatabase()
+                .query(new OSQLSynchQuery<UserSettings>(sqlQuery)).iterator();
 
         while (userSettingsIterator.hasNext()) {
             UserSettings userSettings = (UserSettings) userSettingsIterator.next();
