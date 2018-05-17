@@ -13,6 +13,8 @@ import com.orientechnologies.orient.object.db.OObjectDatabaseTx;
  */
 public abstract class AbstractOrientDBObjectITest {
 
+    private final String dbUrl;
+
     private ODatabaseObject oDatabase;
 
     /**
@@ -22,7 +24,7 @@ public abstract class AbstractOrientDBObjectITest {
      */
     public AbstractOrientDBObjectITest(String databaseName) {
 
-        String dbUrl = "memory:foo/" + databaseName;
+        this.dbUrl = "memory:foo/" + databaseName;
 
         this.oDatabase = new OObjectDatabaseTx(dbUrl);
         if (this.oDatabase.exists()) {
@@ -43,7 +45,7 @@ public abstract class AbstractOrientDBObjectITest {
 
     @After
     public void tearDownAbstractOrientDBObjectITest() {
-        
+
         this.oDatabase.drop();
         if (!this.oDatabase.isClosed()) {
             this.oDatabase.close();
@@ -51,7 +53,17 @@ public abstract class AbstractOrientDBObjectITest {
     }
 
     protected ODatabaseObject getDatabase() {
+
         this.oDatabase.activateOnCurrentThread();
         return this.oDatabase;
+    }
+
+    /**
+     * Useful to simulate scenarios where different threads access the database (using different connections).
+     */
+    protected void releaseCurrentConnection() {
+        this.oDatabase.close();
+        this.oDatabase = new OObjectDatabaseTx(dbUrl);
+        this.oDatabase.open(Authentication.DEFAULT_TESTDB_USER, Authentication.DEFAULT_TESTDB_PASSWORD);
     }
 }

@@ -21,7 +21,7 @@ public class PropagateSaveOnSetFieldIT extends AbstractOrientDBObjectITest {
     }
 
     @Test
-    public void testPropagateSaveOnSavedEntity() {
+    public void testPropagateSave_SameConnection() {
 
         // setup: infrastructure
         registerEntities();
@@ -31,37 +31,51 @@ public class PropagateSaveOnSetFieldIT extends AbstractOrientDBObjectITest {
         Man alan = new Man();
         ayrton.addFriend(alan);
         alan.setFavoriteFood("raclette");
-        Man savedAyrton = getDatabase().save(ayrton);
-
-        // exercise
-        savedAyrton.getFriends().iterator().next().setFavoriteFood("scargots");
-        savedAyrton = getDatabase().save(savedAyrton);
-
-        // verify
-        Assert.assertEquals("scargots", savedAyrton.getFriends().iterator().next().getFavoriteFood());
-    }
-
-    @Test
-    public void testPropagateSaveOnRetrievedEntity() {
-
-        // setup: infrastructure
-        registerEntities();
-
-        // setup: data
-        Man ayrton = new Man();
-        Man alan = new Man();
-        ayrton.addFriend(alan);
-        alan.setFavoriteFood("raclette");
+        this.getDatabase().begin();
         Man savedAyrton = this.getDatabase().save(ayrton);
+        this.getDatabase().commit();
         String ayrtonId = savedAyrton.getId();
 
         // exercise
+        this.getDatabase().begin();
         Person retrievedAyrton = this.getDatabase().load(new ORecordId(ayrtonId));
         Person retrievedAlan = retrievedAyrton.getFriends().iterator().next();
         retrievedAlan.setFavoriteFood("scargots");
         savedAyrton = this.getDatabase().save(retrievedAyrton);
+        this.getDatabase().commit();
 
         // verify
+        retrievedAyrton = this.getDatabase().load(new ORecordId(ayrtonId));
+        Assert.assertEquals("scargots", retrievedAyrton.getFriends().iterator().next().getFavoriteFood());
+    }
+
+    @Test
+    public void testPropagateSave_DifferentConnections() {
+
+        // setup: infrastructure
+        registerEntities();
+
+        // setup: data
+        Man ayrton = new Man();
+        Man alan = new Man();
+        ayrton.addFriend(alan);
+        alan.setFavoriteFood("raclette");
+        this.getDatabase().begin();
+        Man savedAyrton = this.getDatabase().save(ayrton);
+        this.getDatabase().commit();
+        String ayrtonId = savedAyrton.getId();
+
+        // exercise
+        this.releaseCurrentConnection();
+        this.getDatabase().begin();
+        Person retrievedAyrton = this.getDatabase().load(new ORecordId(ayrtonId));
+        Person retrievedAlan = retrievedAyrton.getFriends().iterator().next();
+        retrievedAlan.setFavoriteFood("scargots");
+        savedAyrton = this.getDatabase().save(retrievedAyrton);
+        this.getDatabase().commit();
+
+        // verify
+        this.releaseCurrentConnection();
         retrievedAyrton = this.getDatabase().load(new ORecordId(ayrtonId));
         Assert.assertEquals("scargots", retrievedAyrton.getFriends().iterator().next().getFavoriteFood());
     }
