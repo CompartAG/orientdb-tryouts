@@ -22,5 +22,6 @@
 		<module>parent</module>
 		<module>2.1.x</module>
 		<module>2.2.x</module>
+		<module>3.0.x</module>
 	</modules>	
 </project>
