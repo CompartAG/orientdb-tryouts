@@ -16,7 +16,7 @@
 	<packaging>jar</packaging>
 
 	<properties>
-		<orientdb.version>2.2.35</orientdb.version>
+		<orientdb.version>2.2.36</orientdb.version>
 	</properties>
 	
 	<dependencies>
