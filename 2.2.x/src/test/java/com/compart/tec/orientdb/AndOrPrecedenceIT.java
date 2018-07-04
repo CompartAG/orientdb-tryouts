@@ -27,7 +27,7 @@ public class AndOrPrecedenceIT extends AbstractOrientDBDocumentITest {
     }
 
     /**
-     * false AND false AND false OR true, should evaluate to true but evaluates to false instead
+     * <code>false AND false AND false OR true</code>, should evaluate to true but evaluates to false instead
      */
     @Test
     public void testAndOrPrecedence_NoParentheses_3AndClauses() {
@@ -50,7 +50,32 @@ public class AndOrPrecedenceIT extends AbstractOrientDBDocumentITest {
     }
 
     /**
-     * (false AND false AND false) OR true, evaluates to true (correct)
+     * <code>true AND false AND false OR true</code>, evaluates to true, which is correct, what it is odd is that it is
+     * almost identical to the failing scenario but replacing one of the AND subconditions to be true, which should not
+     * matter.
+     */
+    @Test
+    public void testAndOrPrecedence_NoParentheses_3AndClausesOneOfThemIsTrue() {
+
+        // setup
+        this.createProst();
+
+        StringBuilder queryBuilder = new StringBuilder("select from ").append(DRIVER) //
+                .append(" where ") //
+                .append(AGE).append(EQUALS).append(PROST_AGE) //
+                .append(AND).append(AGE).append(EQUALS).append(15) //
+                .append(AND).append(AGE).append(EQUALS).append(20) //
+                .append(OR).append(AGE).append(EQUALS).append(PROST_AGE);
+
+        // exercise
+        OResultSet<ODocument> drivers = executeQuery(queryBuilder.toString());
+
+        // verify
+        Assert.assertEquals(1, drivers.size());
+    }
+
+    /**
+     * <code>(false AND false AND false) OR true</code>, evaluates to true (correct)
      */
     @Test
     public void testAndOrPrecedence_Parentheses_3AndClauses() {
@@ -75,7 +100,7 @@ public class AndOrPrecedenceIT extends AbstractOrientDBDocumentITest {
     }
 
     /**
-     * false AND false OR true, evaluates to true (correct)
+     * <code>false AND false OR true</code>, evaluates to true (correct)
      */
     @Test
     public void testAndOrPrecedence_NoParentheses_2AndClauses() {
