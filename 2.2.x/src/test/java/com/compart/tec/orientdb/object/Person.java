@@ -47,4 +47,21 @@ public abstract class Person extends BaseEntity {
     public void setFavoriteFood(String favoriteFood) {
         this.favoriteFood = favoriteFood;
     }
+
+    @Override
+    public boolean equals(Object o)
+    {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Person person = (Person) o;
+
+        return favoriteFood != null ? favoriteFood.equals(person.favoriteFood) : person.favoriteFood == null;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return favoriteFood != null ? favoriteFood.hashCode() : 0;
+    }
 }
