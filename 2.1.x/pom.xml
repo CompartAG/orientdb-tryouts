@@ -13,7 +13,6 @@
 	<artifactId>orientdb-tryouts-2.1.x</artifactId>
 	<name>OrientDB tryouts 2.1.x</name>
 	<description>OrientDB tryouts 2.1.x</description>
-	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<properties>

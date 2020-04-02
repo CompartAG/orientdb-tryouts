@@ -68,7 +68,7 @@ public class OrientDBQueryF1TeamsIT extends AbstractOrientDBDocumentITest {
     private void exerciseAndVerifyTeamsHavingCars(String query) {
 
         // exercise
-        OResultSet<ODocument> teams = executeQuery(query);
+        OResultSet<ODocument> teams = query(query);
 
         // verify
         int numTeams = 0;

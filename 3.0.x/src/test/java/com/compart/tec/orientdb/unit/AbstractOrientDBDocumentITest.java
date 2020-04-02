@@ -1,5 +1,8 @@
 package com.compart.tec.orientdb.unit;
 
+import java.util.Iterator;
+import java.util.stream.Collectors;
+
 import org.junit.After;
 import org.junit.Assert;
 
@@ -7,7 +10,7 @@ import com.orientechnologies.orient.core.db.OPartitionedDatabasePool;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.record.impl.ODocument;
-import com.orientechnologies.orient.core.sql.query.OResultSet;
+import com.orientechnologies.orient.core.sql.executor.OResultSet;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
 
 /**
@@ -61,11 +64,21 @@ public abstract class AbstractOrientDBDocumentITest {
      * Executes a query
      * 
      * @param sqlQuery
-     * @return resultSet
+     * @return resultset
      */
-    protected OResultSet<ODocument> query(String sqlQuery) {
-        OSQLSynchQuery<ODocument> oQuery = new OSQLSynchQuery<ODocument>(sqlQuery);
-        return getDatabase().command(oQuery).execute();
+    protected OResultSet queryLegacy(String sqlQuery) {
+        return getDatabase().query(new OSQLSynchQuery<ODocument>(sqlQuery));
+    }
+
+    /**
+     * Executes a query
+     * 
+     * @param sqlQuery
+     * @return resultset
+     */
+    protected OResultSet query(String sqlQuery) {
+
+        return getDatabase().query(sqlQuery);
     }
 
     protected ODatabaseDocument getDatabase() {
@@ -79,5 +92,13 @@ public abstract class AbstractOrientDBDocumentITest {
         }
 
         return this.oDocDatabase;
+    }
+
+    protected static Iterator<ODocument> toIterator(OResultSet resultSet) {
+
+        return resultSet.elementStream() //
+                .map(obj -> (ODocument) obj) //
+                .collect(Collectors.toList()) //
+                .iterator();
     }
 }

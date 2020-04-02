@@ -28,7 +28,7 @@ public class OrientDBPaginationIT extends AbstractOrientDBDocumentITest {
         String query = "select from " + F1SchemaCreator.TEAM + " SKIP 1 LIMIT 3";
 
         // exercise
-        OResultSet<ODocument> teams = executeQuery(query);
+        OResultSet<ODocument> teams = query(query);
 
         // verify
         int numTeams = 0;
