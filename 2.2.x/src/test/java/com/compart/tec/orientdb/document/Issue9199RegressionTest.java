@@ -10,6 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.compart.tec.orientdb.unit.AbstractOrientDBDocumentITest;
@@ -22,6 +23,7 @@ import com.orientechnologies.orient.core.sql.query.OResultSet;
  * @author dta
  *
  */
+@Disabled
 public class Issue9199RegressionTest extends AbstractOrientDBDocumentITest {
 
     public Issue9199RegressionTest() {

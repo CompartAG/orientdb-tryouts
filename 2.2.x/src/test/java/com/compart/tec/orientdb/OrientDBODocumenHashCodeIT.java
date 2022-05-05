@@ -10,6 +10,7 @@ import com.orientechnologies.orient.core.record.impl.ODocument;
 /**
  * @author diegomtassis <a href="mailto:dta@compart.com">Diego Martin Tassis</a>
  */
+@Disabled
 public class OrientDBODocumenHashCodeIT extends AbstractOrientDBDocumentITest {
 
     public OrientDBODocumenHashCodeIT() {
@@ -17,7 +18,6 @@ public class OrientDBODocumenHashCodeIT extends AbstractOrientDBDocumentITest {
     }
 
     @Test
-    @Disabled
     public void testODocumentHashCode() {
 
         // setup
@@ -33,7 +33,6 @@ public class OrientDBODocumenHashCodeIT extends AbstractOrientDBDocumentITest {
     }
 
     @Test
-    @Disabled
     public void testORidHashCode() {
 
         // setup
