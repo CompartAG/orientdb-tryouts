@@ -9,8 +9,8 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import com.compart.tec.orientdb.unit.AbstractOrientDBDocumentITest;
 import com.orientechnologies.orient.core.metadata.schema.OType;
@@ -51,7 +51,7 @@ public class Issue9199RegressionTest extends AbstractOrientDBDocumentITest {
             resultset.next();
             count++;
         }
-        Assert.assertEquals(1, count);
+        Assertions.assertEquals(1, count);
     }
 
     @Test
@@ -77,9 +77,9 @@ public class Issue9199RegressionTest extends AbstractOrientDBDocumentITest {
             resultset.next();
             count++;
         }
-        Assert.assertEquals(1, count);
+        Assertions.assertEquals(1, count);
     }
-    
+
     @Test
     public void testQuery_UsingContains() {
 
@@ -95,7 +95,8 @@ public class Issue9199RegressionTest extends AbstractOrientDBDocumentITest {
         this.getDatabase().save(detail);
 
         // exercise
-        OResultSet resultset = this.query("SELECT FROM Detail WHERE (name = 'foo' AND master CONTAINS (labels LIKE '%bar%'))");
+        OResultSet resultset = this
+                .query("SELECT FROM Detail WHERE (name = 'foo' AND master CONTAINS (labels LIKE '%bar%'))");
 
         // verify
         int count = 0;
@@ -103,6 +104,6 @@ public class Issue9199RegressionTest extends AbstractOrientDBDocumentITest {
             resultset.next();
             count++;
         }
-        Assert.assertEquals(1, count);
+        Assertions.assertEquals(1, count);
     }
 }

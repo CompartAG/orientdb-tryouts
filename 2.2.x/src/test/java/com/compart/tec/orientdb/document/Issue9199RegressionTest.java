@@ -9,8 +9,8 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import com.compart.tec.orientdb.unit.AbstractOrientDBDocumentITest;
 import com.orientechnologies.orient.core.metadata.schema.OType;
@@ -35,7 +35,7 @@ public class Issue9199RegressionTest extends AbstractOrientDBDocumentITest {
         ODocument master = this.getDatabase().save(new ODocument("Master"));
         Set<String> labels = new HashSet<>(Arrays.asList("bar"));
         master.field("labels", labels, OType.EMBEDDEDSET);
-        
+
         ODocument detail = new ODocument("Detail");
         detail.field("master", master);
         detail.field("name", "foo");
@@ -47,9 +47,9 @@ public class Issue9199RegressionTest extends AbstractOrientDBDocumentITest {
                 .query("SELECT FROM Detail WHERE (name = 'foo' AND master.labels LIKE '%bar%')");
 
         // verify
-        Assert.assertEquals(1, resultset.size());
+        Assertions.assertEquals(1, resultset.size());
     }
-    
+
     @Test
     public void testQuery_SetWIth2Elements() {
 
@@ -57,7 +57,7 @@ public class Issue9199RegressionTest extends AbstractOrientDBDocumentITest {
         ODocument master = this.getDatabase().save(new ODocument("Master"));
         Set<String> labels = new HashSet<>(Arrays.asList("bar", "foobar"));
         master.field("labels", labels, OType.EMBEDDEDSET);
-        
+
         ODocument detail = new ODocument("Detail");
         detail.field("master", master);
         detail.field("name", "foo");
@@ -69,6 +69,6 @@ public class Issue9199RegressionTest extends AbstractOrientDBDocumentITest {
                 .query("SELECT FROM Detail WHERE (name = 'foo' AND master.labels LIKE '%bar%')");
 
         // verify
-        Assert.assertEquals(1, resultset.size());
+        Assertions.assertEquals(1, resultset.size());
     }
 }

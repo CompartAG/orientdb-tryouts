@@ -3,8 +3,8 @@ package com.compart.tec.orientdb.unit;
 import java.util.Iterator;
 import java.util.stream.Collectors;
 
-import org.junit.After;
-import org.junit.Assert;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 
 import com.orientechnologies.orient.core.db.OPartitionedDatabasePool;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
@@ -39,10 +39,10 @@ public abstract class AbstractOrientDBDocumentITest {
         this.databasePool = new OPartitionedDatabasePool(dbUrl, Authentication.DEFAULT_TESTDB_USER,
                 Authentication.DEFAULT_TESTDB_PASSWORD);
         this.oDocDatabase = this.databasePool.acquire();
-        Assert.assertTrue(dbIsUpAndRunning());
+        Assertions.assertTrue(dbIsUpAndRunning());
     }
 
-    @After
+    @AfterEach
     public void tearDownAbstractOrientDBDocumentITest() {
 
         this.oDocDatabase.drop();

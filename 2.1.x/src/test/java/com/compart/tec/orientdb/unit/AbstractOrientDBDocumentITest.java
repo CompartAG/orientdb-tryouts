@@ -1,6 +1,6 @@
 package com.compart.tec.orientdb.unit;
 
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 
 import com.orientechnologies.orient.core.db.OPartitionedDatabasePool;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
@@ -35,7 +35,7 @@ public abstract class AbstractOrientDBDocumentITest {
         this.databasePool = new OPartitionedDatabasePool(dbUrl, Authentication.DEFAULT_TESTDB_USER,
                 Authentication.DEFAULT_TESTDB_PASSWORD);
         this.oDocDatabase = this.databasePool.acquire();
-        Assert.assertTrue(dbIsUpAndRunning());
+        Assertions.assertTrue(dbIsUpAndRunning());
     }
 
     public void tearDown() {

@@ -5,10 +5,9 @@
 
 package com.compart.tec.orientdb.object;
 
-import static org.junit.Assert.assertEquals;
-
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import com.compart.tec.orientdb.unit.AbstractOrientDBObjectITest;
 import com.orientechnologies.orient.core.record.impl.ODocument;
@@ -19,7 +18,7 @@ import javassist.util.proxy.ProxyObject;
 /**
  * @author diegomtassis <a href="mailto:dta@compart.com">Diego Martin Tassis</a>
  */
-@Ignore
+@Disabled
 public class SaveOneToOnePojoIT extends AbstractOrientDBObjectITest {
 
     public SaveOneToOnePojoIT() {
@@ -40,8 +39,8 @@ public class SaveOneToOnePojoIT extends AbstractOrientDBObjectITest {
         Man savedHusband = getDatabase().save(husband);
 
         // verify
-        assertEquals("Parent saved 2 times", 1, getDocument(savedHusband).getVersion());
-        assertEquals("Child saved 2 times", 1, getDocument(savedHusband.getWife()).getVersion());
+        Assertions.assertEquals(1, getDocument(savedHusband).getVersion(), "Parent saved 2 times");
+        Assertions.assertEquals(1, getDocument(savedHusband.getWife()).getVersion(), "Child saved 2 times");
     }
 
     private void registerEntities() {

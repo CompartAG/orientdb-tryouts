@@ -1,7 +1,7 @@
 package com.compart.tec.orientdb.unit;
 
-import org.junit.After;
-import org.junit.Assert;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 
 import com.orientechnologies.orient.core.db.object.ODatabaseObject;
 import com.orientechnologies.orient.object.db.OObjectDatabaseTx;
@@ -33,7 +33,7 @@ public abstract class AbstractOrientDBObjectITest {
         }
         this.oDatabase.create();
 
-        Assert.assertTrue(dbIsUpAndRunning());
+        Assertions.assertTrue(dbIsUpAndRunning());
     }
 
     /**
@@ -43,7 +43,7 @@ public abstract class AbstractOrientDBObjectITest {
         return this.oDatabase != null;
     }
 
-    @After
+    @AfterEach
     public void tearDownAbstractOrientDBObjectITest() {
 
         this.oDatabase.drop();

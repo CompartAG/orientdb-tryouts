@@ -1,13 +1,12 @@
 package com.compart.tec.orientdb;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertThat;
-
 import java.util.HashMap;
 import java.util.Map;
 
 import org.hamcrest.CoreMatchers;
-import org.junit.Test;
+import org.hamcrest.MatcherAssert;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.record.impl.ODocument;
@@ -23,7 +22,7 @@ public class LinkmapTest {
     @Test
     public void testLinkmap() {
 
-        //setup
+        // setup
         OrientGraphFactory factory = new OrientGraphFactory("memory:testlinkmap");
 
         OrientGraph graph = factory.getTx();
@@ -31,7 +30,7 @@ public class LinkmapTest {
         OrientVertex b = graph.addVertex("B");
         graph.commit();
 
-        //exercice
+        // exercice
         OrientVertex c = graph.addVertex("C");
         ODocument bDoc = b.getRecord();
         Map<String, OrientVertex> linkmap = getLinkMap(bDoc);
@@ -39,11 +38,11 @@ public class LinkmapTest {
         bDoc.save();
         graph.commit(); // in 2.2 this mutates the Map<String, OrientVertex> into a Map<String, ODocument> !!!
 
-        //verify
+        // verify
         Map<String, OrientVertex> map = getLinkMap(b.getRecord());
 
-        assertNotNull("linkmap cannot be null", map);
-        assertThat(map.get(a.getId().toString()), CoreMatchers.instanceOf(OrientVertex.class));
+        Assertions.assertNotNull(map, "linkmap cannot be null");
+        MatcherAssert.assertThat(map.get(a.getId().toString()), CoreMatchers.instanceOf(OrientVertex.class));
 
     }
 

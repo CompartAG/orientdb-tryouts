@@ -1,8 +1,7 @@
 package com.compart.tec.orientdb;
 
-import static org.junit.Assert.assertEquals;
-
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import com.compart.tec.orientdb.f1.F1SchemaCreator;
 import com.compart.tec.orientdb.f1.F1SimpleFixture;
@@ -35,6 +34,6 @@ public class OrientDBPaginationIT extends AbstractOrientDBDocumentITest {
         for (ODocument team : teams) {
             numTeams++;
         }
-        assertEquals(3, numTeams);
+        Assertions.assertEquals(3, numTeams);
     }
 }

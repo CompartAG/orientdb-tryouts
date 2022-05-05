@@ -1,8 +1,8 @@
 package com.compart.tec.orientdb;
 
-import org.junit.Assert;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import com.compart.tec.orientdb.unit.AbstractOrientDBDocumentITest;
 import com.orientechnologies.orient.core.record.impl.ODocument;
@@ -17,7 +17,7 @@ public class OrientDBODocumenHashCodeIT extends AbstractOrientDBDocumentITest {
     }
 
     @Test
-    @Ignore
+    @Disabled
     public void testODocumentHashCode() {
 
         // setup
@@ -29,11 +29,11 @@ public class OrientDBODocumenHashCodeIT extends AbstractOrientDBDocumentITest {
         Integer hashCodeAfter = oDocument.hashCode();
 
         // verify
-        Assert.assertEquals(hashCodeBefore, hashCodeAfter);
+        Assertions.assertEquals(hashCodeBefore, hashCodeAfter);
     }
 
     @Test
-    @Ignore
+    @Disabled
     public void testORidHashCode() {
 
         // setup
@@ -45,6 +45,6 @@ public class OrientDBODocumenHashCodeIT extends AbstractOrientDBDocumentITest {
         Integer hashCodeAfter = oDocument.getIdentity().hashCode();
 
         // verify
-        Assert.assertEquals(hashCodeBefore, hashCodeAfter);
+        Assertions.assertEquals(hashCodeBefore, hashCodeAfter);
     }
 }

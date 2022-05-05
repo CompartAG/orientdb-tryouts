@@ -1,8 +1,8 @@
 
 package com.compart.tec.orientdb.object;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import com.compart.tec.orientdb.unit.AbstractOrientDBObjectITest;
 import com.orientechnologies.orient.core.id.ORecordId;
@@ -41,7 +41,7 @@ public class PropagateSaveOnSetFieldIT extends AbstractOrientDBObjectITest {
 
         // verify
         retrievedAyrton = this.getDatabase().load(new ORecordId(ayrtonId));
-        Assert.assertEquals("scargots", retrievedAyrton.getFriends().iterator().next().getFavoriteFood());
+        Assertions.assertEquals("scargots", retrievedAyrton.getFriends().iterator().next().getFavoriteFood());
     }
 
     /**
@@ -71,9 +71,9 @@ public class PropagateSaveOnSetFieldIT extends AbstractOrientDBObjectITest {
         // verify
         this.releaseCurrentConnection();
         retrievedAyrton = this.getDatabase().load(new ORecordId(ayrtonId));
-        Assert.assertEquals("scargots", retrievedAyrton.getFriends().iterator().next().getFavoriteFood());
+        Assertions.assertEquals("scargots", retrievedAyrton.getFriends().iterator().next().getFavoriteFood());
     }
-    
+
     /**
      * Propagating a save operation over a Collection field (and then reading) using different connections. It works
      */
@@ -101,7 +101,7 @@ public class PropagateSaveOnSetFieldIT extends AbstractOrientDBObjectITest {
         // verify
         this.releaseCurrentConnection();
         retrievedAyrton = this.getDatabase().load(new ORecordId(ayrtonId));
-        Assert.assertEquals("scargots", retrievedAyrton.getEnemies().iterator().next().getFavoriteFood());
+        Assertions.assertEquals("scargots", retrievedAyrton.getEnemies().iterator().next().getFavoriteFood());
     }
 
     private void registerEntities() {

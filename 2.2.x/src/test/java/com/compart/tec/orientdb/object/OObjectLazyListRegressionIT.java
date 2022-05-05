@@ -1,8 +1,8 @@
 package com.compart.tec.orientdb.object;
 
-import org.junit.Assert;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import com.compart.tec.orientdb.unit.AbstractOrientDBObjectITest;
 
@@ -40,19 +40,19 @@ public class OObjectLazyListRegressionIT extends AbstractOrientDBObjectITest {
         Man savedJohn = getDatabase().save(john);
 
         // verify
-        Assert.assertNotNull(savedJohn);
+        Assertions.assertNotNull(savedJohn);
         // Normal loop
         for (Woman exWife : savedJohn.getExWives()) {
-            Assert.assertNotNull(exWife.getName());
+            Assertions.assertNotNull(exWife.getName());
         }
         // Streaming
         savedJohn.getExWives().stream().forEach((exWife) -> {
-            Assert.assertNotNull(exWife.getName());
+            Assertions.assertNotNull(exWife.getName());
         });
     }
 
     @Test
-    @Ignore
+    @Disabled
     public void testStreamSavedListField() {
 
         // setup
@@ -71,9 +71,9 @@ public class OObjectLazyListRegressionIT extends AbstractOrientDBObjectITest {
         Man savedJohn = getDatabase().save(john);
 
         // verify
-        Assert.assertNotNull(savedJohn);
+        Assertions.assertNotNull(savedJohn);
         savedJohn.getExWives().stream().forEach((exWife) -> {
-            Assert.assertNotNull(exWife.getName());
+            Assertions.assertNotNull(exWife.getName());
         });
     }
 }

@@ -1,12 +1,11 @@
 package com.compart.tec.orientdb;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
-
 import org.hamcrest.CoreMatchers;
-import org.junit.After;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.hamcrest.MatcherAssert;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import com.compart.tec.orientdb.f1.F1SchemaCreator;
 import com.compart.tec.orientdb.f1.F1SimpleFixture;
@@ -27,7 +26,7 @@ public class OrientDBQueryF1TeamsIT extends AbstractOrientDBDocumentITest {
         new F1SimpleFixture(getDatabase()).load();
     }
 
-    @After
+    @AfterEach
     public void tearDown() {
         super.tearDown();
     }
@@ -62,7 +61,7 @@ public class OrientDBQueryF1TeamsIT extends AbstractOrientDBDocumentITest {
     }
 
     @Test
-    @Ignore
+    @Disabled
     public void testQueryEmulatingJoin_nestedDistinctWithoutExpanding() {
 
         // setup
@@ -81,10 +80,10 @@ public class OrientDBQueryF1TeamsIT extends AbstractOrientDBDocumentITest {
         // verify
         int numTeams = 0;
         for (ODocument team : teams) {
-            assertThat(team.field(F1SchemaCreator.NAME), CoreMatchers.anyOf(CoreMatchers.containsString("Williams"),
-                    CoreMatchers.containsString("McLaren")));
+            MatcherAssert.assertThat(team.field(F1SchemaCreator.NAME), CoreMatchers
+                    .anyOf(CoreMatchers.containsString("Williams"), CoreMatchers.containsString("McLaren")));
             numTeams++;
         }
-        assertEquals(2, numTeams);
+        Assertions.assertEquals(2, numTeams);
     }
 }
