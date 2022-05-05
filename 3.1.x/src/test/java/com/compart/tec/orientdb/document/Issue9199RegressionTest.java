@@ -79,7 +79,7 @@ public class Issue9199RegressionTest extends AbstractOrientDBDocumentITest {
         }
         Assert.assertEquals(1, count);
     }
-
+    
     @Test
     public void testQuery_UsingContains() {
 
@@ -95,57 +95,7 @@ public class Issue9199RegressionTest extends AbstractOrientDBDocumentITest {
         this.getDatabase().save(detail);
 
         // exercise
-        OResultSet resultset = this
-                .query("SELECT FROM Detail WHERE (name = 'foo' AND master CONTAINS (labels LIKE '%bar%'))");
-
-        // verify
-        int count = 0;
-        while (resultset.hasNext()) {
-            resultset.next();
-            count++;
-        }
-        Assert.assertEquals(1, count);
-    }
-
-    @Test
-    public void testQuery_NotNested_UsingContains() {
-
-        // setup
-        ODocument entity = this.getDatabase().save(new ODocument("Entity"));
-        Set<String> labels = new HashSet<>(Arrays.asList("foo", "bar", "foobar"));
-        entity.field("labels", labels, OType.EMBEDDEDSET);
-
-        this.getDatabase().save(entity);
-
-        // exercise
-        OResultSet resultset = this.query("SELECT FROM Entity WHERE labels contains \"bar\"");
-
-        // verify
-        int count = 0;
-        while (resultset.hasNext()) {
-            resultset.next();
-            count++;
-        }
-        Assert.assertEquals(1, count);
-    }
-    
-    @Test
-    public void testQuery_UsingContainsAlternative() {
-
-        // setup
-        ODocument master = this.getDatabase().save(new ODocument("Master"));
-        Set<String> labels = new HashSet<>(Arrays.asList("bar", "foobar"));
-        master.field("labels", labels, OType.EMBEDDEDSET);
-
-        ODocument detail = new ODocument("Detail");
-        detail.field("master", master);
-        detail.field("name", "foo");
-
-        this.getDatabase().save(detail);
-
-        // exercise
-        OResultSet resultset = this
-                .query("SELECT FROM Detail WHERE (name = 'foo' AND master.labels CONTAINS \"bar\")");
+        OResultSet resultset = this.query("SELECT FROM Detail WHERE (name = 'foo' AND master CONTAINS (labels LIKE '%bar%'))");
 
         // verify
         int count = 0;

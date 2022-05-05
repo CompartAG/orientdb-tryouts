@@ -10,13 +10,13 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	
-	<artifactId>orientdb-tryouts-3.0.x</artifactId>
-	<name>OrientDB tryouts 3.0.x</name>
-	<description>OrientDB tryouts 3.0.x</description>
+	<artifactId>orientdb-tryouts-3.1.x</artifactId>
+	<name>OrientDB tryouts 3.1.x</name>
+	<description>OrientDB tryouts 3.1.x</description>
 	<packaging>jar</packaging>
 
 	<properties>
-		<orientdb.version>3.0.37</orientdb.version>
+		<orientdb.version>3.1.12</orientdb.version>
 	</properties>
 	
 	<dependencies>
